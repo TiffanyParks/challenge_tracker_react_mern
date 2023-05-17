@@ -5,13 +5,24 @@ import Form from "./components/Form";
 import { nanoid } from "nanoid";
 import FilterButton from './components/FilterButton';
 
-// import logo from "./styles/lake_forest_gsm_logo.jpg";
+//The FILTER_MAP values are functions used to filter the tasks data array
+const FILTER_MAP = {
+  //The All filter shows all tasks, so we return true for all tasks
+  All: () => true,
+  //The Active filter shows tasks whose completed prop is false.
+  Active: (task) => !task.completed,
+  //The Completed filter shows tasks whose completed prop is true.
+  Completed: (task) => task.completed,
+};
 
+// The Object.keys() method will collect an array of FILTER_NAMES
+const FILTER_NAMES = Object.keys(FILTER_MAP);
 
 
 function App(props) {
 
   const [tasks, setTasks] = useState(props.tasks);
+  const [filter, setFilter] = useState("All");
 
   function addTask(name) {
     const newTask = { id: `todo-${nanoid()}`, name, completed: false };
@@ -28,6 +39,10 @@ function App(props) {
       deleteTask={deleteTask}
       editTask={editTask}
     />
+  ));
+
+  const filterList = FILTER_NAMES.map((name) => (
+    <FilterButton key={name} name={name} />
   ));
 
   const tasksNoun = taskList.lenght !== 1 ? "tasks" : "task";
@@ -68,9 +83,9 @@ function App(props) {
       <h1>Challenge Tracker</h1>
       <Form addTask={addTask} />
       <div className="filters btn-group stack-exception">
-        <FilterButton />
-        <FilterButton />
-        <FilterButton />
+        {
+          filterList
+        }
       </div>
       <h2 id="list-heading">{headingText}</h2>
       <ul
