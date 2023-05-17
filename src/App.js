@@ -1,9 +1,18 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import Todo from "./components/Todo";
 import Form from "./components/Form";
 // A tiny, secure, URL-friendly, unique string ID generator for JavaScrip
 import { nanoid } from "nanoid";
 import FilterButton from './components/FilterButton';
+
+//gets previous state when a user deletes a task from their list
+function usePrevious(value) {
+  const ref = useRef();
+  useEffect(() => {
+    ref.current = value;
+  });
+  return ref.current;
+}
 
 //The FILTER_MAP values are functions used to filter the tasks data array
 const FILTER_MAP = {
@@ -85,6 +94,16 @@ function App(props) {
     setTasks(editedTaskList);
   }
 
+  const listHeadingRef = useRef(null);
+  //invokes usePrevious() function to track the length of the tasks state
+  const prevTaskLength = usePrevious(tasks.length);
+
+useEffect(() => {
+  if (tasks.length - prevTaskLength === -1) {
+    listHeadingRef.current.focus();
+  }
+}, [tasks.length, prevTaskLength]);
+
   return (
     <div className="todoapp stack-large">
       <h1>Challenge Tracker</h1>
@@ -94,7 +113,11 @@ function App(props) {
           filterList
         }
       </div>
-      <h2 id="list-heading">{headingText}</h2>
+      {/* Only apply a tabindex to an element when you're absolutely sure that making it focusable will benefit your user in some way. Irresponsible usage of tabindex could have a profoundly negative impact on keyboard and screen-reader users! */}
+      <h2 id="list-heading" tabIndex="-1" ref={listHeadingRef}>
+        {headingText}
+      </h2>
+
       <ul
         role="list"
         className="todo-list stack-large stack-exception"
