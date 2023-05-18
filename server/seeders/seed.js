@@ -1,14 +1,26 @@
-// const db = require('../config/connection');
-// const { Profile } = require('../models');
-// const profileSeeds = require('./profileSeeds.json');
+const db = require('../config/connection');
+const { User, Task, Status } = require('../models');
 
-// db.once('open', async () => {
-//   try {
-//     await .deleteMany({});
-//     await .create(p);
+const userData = require('./user.json');
+const taskData = require('./task.json');
+const statusData = require('./status.json');
 
-    
-//   } catch (err) {
-//     throw err;
-//   }
-// });
+db.once('open', async () => {
+    try {
+      await User.deleteMany({});
+      await User.create(userData);
+  
+      await Task.deleteMany({});
+      await Task.create(taskData);
+
+      await Status.deleteMany({});
+      await Status.create(statusData);
+
+
+      console.log('all done!');
+      process.exit(0);
+    } catch (err) {
+      throw err;
+    }
+  });
+  

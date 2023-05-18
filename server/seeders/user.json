@@ -1,1 +1,12 @@
-
+[
+ {
+    "name": "Tiffany Parks",
+    "email": "tp123@gmail.com",
+   "password": "tp1234#5678"
+  },
+  {
+    "name": "NaQuan White",
+    "email": "naquan.white@gmail.com",
+   "password": "nw12345678"
+  }
+]
