@@ -35,12 +35,20 @@ As a student participating in a coding boot camp, life can quickly come to you. 
 * Then I can use the Tab + Shift buttons to navigate the app. 
 
 ## Wireframes
+![image](https://github.com/TiffanyParks/challenge_tracker_react_mern/assets/126128634/508a9255-5742-4ae9-8e30-5966358a3852)
 
 
 
 ## GitHub Link
 https://github.com/TiffanyParks/challenge_tracker_react_mern.git
 
+![image](https://github.com/TiffanyParks/challenge_tracker_react_mern/assets/126128634/d91af970-45be-49eb-a5ec-45c16c3a150b)
+
+![image](https://github.com/TiffanyParks/challenge_tracker_react_mern/assets/126128634/444edd57-43d0-4e9b-b31b-1a16f562aeec)
+
+![image](https://github.com/TiffanyParks/challenge_tracker_react_mern/assets/126128634/6a17c983-37bc-451d-a406-00492aa90bdb)
+
+![image](https://github.com/TiffanyParks/challenge_tracker_react_mern/assets/126128634/7baaa468-800d-489d-9bc0-38354e0e75aa)
 
 ## Client-side Dependencies
 * React 
